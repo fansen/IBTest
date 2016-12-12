@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="IBTest:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/IBTest_jar</output-path>
+    <root id="archive" name="IBTest.jar">
+      <element id="module-output" name="IBTest" />
+    </root>
+  </artifact>
+</component>
