@@ -29,9 +29,9 @@ public class Testbed {
         final EClientSocket m_client = wrapper.getClient();
         final EReaderSignal m_signal = wrapper.getSignal();
         //! [connect]
-        m_client.eConnect("127.0.0.1", 4001, 0);
+        m_client.eConnect("127.0.0.1", 7497, 0);
         //! [connect]
-        //! [ereader]
+        //! [EReader]
         final EReader reader = new EReader(m_client, m_signal);
         reader.start();
         new Thread() {
@@ -48,10 +48,10 @@ public class Testbed {
                 }
             }
         }.start();
-        //! [ereader]
+        //! [EReader]
         Thread.sleep(1000);
 
-        MySQLTest(m_client);
+//        MySQLTest(m_client);
 
         //! [faordergrouppctchange]
 //        Order faOrderGroupPC = OrderSamples.MarketOrder("BUY", 300);
@@ -92,9 +92,9 @@ public class Testbed {
 //        faOrderOneAccount.account("DU525698");
 //        m_client.placeOrder(6606, ContractSamples.VOWStock(), faOrderOneAccount);
 
-//        Order faOrderGroupEQ = OrderSamples.LimitOrder("SELL", 300, 130.111);
-//        faOrderGroupEQ.account("DU525698");
-//        m_client.placeOrder(6607, ContractSamples.VOWStock(), faOrderGroupEQ);
+//        Order faOrderOneAccount = OrderSamples.LimitOrder("SELL", 300, 130.111);
+//        faOrderOneAccount.account("DU525698");
+//        m_client.placeOrder(6607, ContractSamples.VOWStock(), faOrderOneAccount);
 
 //        m_client.reqCurrentTime();
 //        System.out.println("serverVersion = " + m_client.serverVersion());
@@ -161,13 +161,11 @@ public class Testbed {
 //        Thread.sleep(5000);
 //        m_client.cancelPositions();
 
-
         Thread.sleep(20000);
         m_client.eDisconnect();
     }
 
     private static void MySQLTest(EClientSocket m_client) {
-
         // 驱动程序名
         String driver = "com.mysql.jdbc.Driver";
         // URL指向要访问的数据库名mysql
@@ -254,26 +252,18 @@ public class Testbed {
     private static void orderOperations(EClientSocket client, int nextOrderId) throws InterruptedException {
 
         /*** Requesting the next valid id ***/
-        //! [reqids]
         //The parameter is always ignored.
         client.reqIds(-1);
-        //! [reqids]
+
         //Thread.sleep(1000);
         /*** Requesting all open orders ***/
-        //! [reqallopenorders]
         client.reqAllOpenOrders();
-        //! [reqallopenorders]
         //Thread.sleep(1000);
         /*** Taking over orders to be submitted via TWS ***/
-        //! [reqautoopenorders]
         client.reqAutoOpenOrders(true);
-        //! [reqautoopenorders]
         //Thread.sleep(1000);
         /*** Requesting this API client's orders ***/
-        //! [reqopenorders]
         client.reqOpenOrders();
-        //! [reqopenorders]
-        //Thread.sleep(1000);
 
         /*** Placing/modifying an order - remember to ALWAYS increment the nextValidId after placing an order so it can be used for the next one! ***/
         //! [order_submission]
@@ -672,40 +662,19 @@ public class Testbed {
     }
 
     private static void financialAdvisorOperations(EClientSocket client) {
-
-        System.out.println("FADataType.ALIASES!");
         /*** Requesting FA information ***/
-        //! [requestfaaliases]
+        System.out.println("FADataType.ALIASES!");
         client.requestFA(FADataType.ALIASES.ordinal());
-        //! [requestfaaliases]
-
         System.out.println("FADataType.GROUPS!");
-        //! [requestfagroups]
         client.requestFA(FADataType.GROUPS.ordinal());
-        //! [requestfagroups]
-
         System.out.println("FADataType.PROFILES!");
-        //! [requestfaprofiles]
         client.requestFA(FADataType.PROFILES.ordinal());
-        //! [requestfaprofiles]
 
         /*** Replacing FA information - Fill in with the appropriate XML string. ***/
-        //! [replacefaonegroup]
-        client.replaceFA(FADataType.GROUPS.ordinal(), FAMethodSamples.FaOneGroup);
-        //! [replacefaonegroup]
-
-        //! [replacefatwogroups]
+//        client.replaceFA(FADataType.GROUPS.ordinal(), FAMethodSamples.FaOneGroup);
         client.replaceFA(FADataType.GROUPS.ordinal(), FAMethodSamples.FaTwoGroups);
-        //! [replacefatwogroups]
-
-        //! [replacefaoneprofile]
-        client.replaceFA(FADataType.PROFILES.ordinal(), FAMethodSamples.FaOneProfile);
-        //! [replacefaoneprofile]
-
-        //! [replacefatwoprofiles]
+//        client.replaceFA(FADataType.PROFILES.ordinal(), FAMethodSamples.FaOneProfile);
         client.replaceFA(FADataType.PROFILES.ordinal(), FAMethodSamples.FaTwoProfiles);
-        //! [replacefatwoprofiles]
-
     }
 
     private static void testDisplayGroups(EClientSocket client) throws InterruptedException {

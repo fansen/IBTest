@@ -175,13 +175,11 @@ public class EWrapperImpl implements EWrapper {
     }
     //! [accountdownloadend]
 
-    //! [nextvalidid]
     @Override
     public void nextValidId(int orderId) {
         System.out.println("Next Valid Id: [" + orderId + "]");
         currentOrderId = orderId;
     }
-    //! [nextvalidid]
 
     //! [contractdetails]
     @Override

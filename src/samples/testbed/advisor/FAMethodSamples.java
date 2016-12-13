@@ -1,7 +1,7 @@
 package samples.testbed.advisor;
 
 public class FAMethodSamples {
-	
+
 	//! [faonegroup]
 	public static String FaOneGroup = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
             + "<ListOfGroups>"
@@ -9,14 +9,14 @@ public class FAMethodSamples {
                 + "<name>Equal_Quantity</name>"
                 + "<ListOfAccts varName=\"list\">"
                     //Replace with your own accountIds
-                    + "<String>DU119915</String>"
-                    + "<String>DU119916</String>"
+                    + "<String>DU525700</String>"
+                    + "<String>DU525701</String>"
                 + "</ListOfAccts>"
                 + "<defaultMethod>EqualQuantity</defaultMethod>"
             + "</Group>"
         + "</ListOfGroups>";
 	//! [faonegroup]
-	
+
 	//! [fatwogroups]
     public static String FaTwoGroups = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
             +"<ListOfGroups>"
@@ -24,8 +24,8 @@ public class FAMethodSamples {
                 + "<name>Equal_Quantity</name>"
                 + "<ListOfAccts varName=\"list\">"
                     //Replace with your own accountIds
-                    + "<String>DU119915</String>"
-                    + "<String>DU119916</String>"
+                    + "<String>DU525700</String>"
+                    + "<String>DU525701</String>"
                 + "</ListOfAccts>"
                 + "<defaultMethod>EqualQuantity</defaultMethod>"
             + "</Group>"
@@ -33,14 +33,14 @@ public class FAMethodSamples {
                 + "<name>Pct_Change</name>"
                 + "<ListOfAccts varName=\"list\">"
                     //Replace with your own accountIds
-                    + "<String>DU119915</String>"
-                    + "<String>DU119916</String>"
+                    + "<String>DU525698</String>"
+                    + "<String>DU525699</String>"
                 + "</ListOfAccts>"
                 + "<defaultMethod>PctChange</defaultMethod>"
             + "</Group>"
         + "</ListOfGroups>";
     //! [fatwogroups]
-    
+
   //! [faoneprofile]
     public static String FaOneProfile = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
             + "<ListOfAllocationProfiles>"
@@ -62,7 +62,7 @@ public class FAMethodSamples {
             + "</AllocationProfile>"
         + "</ListOfAllocationProfiles>";
     //! [faoneprofile]
-    
+
     //! [fatwoprofiles]
     public static String FaTwoProfiles = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
             + "<ListOfAllocationProfiles>"
@@ -100,5 +100,5 @@ public class FAMethodSamples {
             + "</AllocationProfile>"
         + "</ListOfAllocationProfiles>";
     //! [fatwoprofiles]
-    
+
 }
