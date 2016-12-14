@@ -67,9 +67,10 @@ public class Testbed {
 //        faOrderOneAccount.account("DU525700");
 //        m_client.placeOrder(1111, ContractSamples.YOUYIKUStock(), faOrderOneAccount);
 
-//        Order faOrderGroupEQ = OrderSamples.LimitOrder("BUY", 300, 184);
-//        faOrderGroupEQ.faGroup("Group_Equal");
+//        Order faOrderGroupEQ = OrderSamples.LimitOrder("SELL", 300, 187.25);
+//        faOrderGroupEQ.faGroup("Test");
 //        faOrderGroupEQ.faMethod("EqualQuantity");
+//        m_client.placeOrder(1104, ContractSamples.VOWStock(), faOrderGroupEQ);
 //        m_client.placeOrder(1003, ContractSamples.TencentStock(), faOrderGroupEQ);
 //        m_client.placeOrder(1001, ContractSamples.YOUYIKUStock(), faOrderGroupEQ);
 //        m_client.placeOrder(1001, ContractSamples.YOUYIKUStock(), OrderSamples.Discretionary("SELL", 300, 27.30, 0.5));
