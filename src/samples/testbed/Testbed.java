@@ -52,6 +52,7 @@ public class Testbed {
         Thread.sleep(1000);
 
 //        MySQLTest(m_client);
+//        tickDataOperations(m_client);
 
         //! [faordergrouppctchange]
 //        Order faOrderGroupPC = OrderSamples.MarketOrder("BUY", 300);
@@ -67,22 +68,32 @@ public class Testbed {
 //        faOrderOneAccount.account("DU525700");
 //        m_client.placeOrder(1111, ContractSamples.YOUYIKUStock(), faOrderOneAccount);
 
-//        Order faOrderGroupEQ = OrderSamples.LimitOrder("SELL", 300, 187.25);
-//        faOrderGroupEQ.faGroup("Test");
+//        Order faOrderGroupEQ = OrderSamples.MarketOrder("BUY", 300);
+//        faOrderGroupEQ.faGroup("Equal_Quantity");
 //        faOrderGroupEQ.faMethod("EqualQuantity");
 //        m_client.placeOrder(1104, ContractSamples.VOWStock(), faOrderGroupEQ);
 //        m_client.placeOrder(1003, ContractSamples.TencentStock(), faOrderGroupEQ);
 //        m_client.placeOrder(1001, ContractSamples.YOUYIKUStock(), faOrderGroupEQ);
 //        m_client.placeOrder(1001, ContractSamples.YOUYIKUStock(), OrderSamples.Discretionary("SELL", 300, 27.30, 0.5));
 
+//        Order faOrderGroupEQ = OrderSamples.MarketOrder("SELL", 300);
+//        faOrderGroupEQ.faGroup("Net_Liq");
+//        faOrderGroupEQ.faMethod("NetLiq");
+//        m_client.placeOrder(1111, ContractSamples.VOWStock(), faOrderGroupEQ);
+
 //        Order faOrderEQ = OrderSamples.LimitOrder("SELL", 300, 27.10);
 //        faOrderEQ.account("DU525698");
 //        m_client.placeOrder(6605, ContractSamples.YOUYIKUStock(), faOrderGroupEQ);
 
         // 6288
-//        Order faYouYiKuOrder = OrderSamples.LimitOrder("SELL", 300, 28.45);
+//        Order faYouYiKuOrder = OrderSamples.MarketOrder("BUY", 300);
 //        faYouYiKuOrder.account("DU525700");
-//        m_client.placeOrder(3135, ContractSamples.YOUYIKUStock(), faYouYiKuOrder);
+//        m_client.placeOrder(1113, ContractSamples.YOUYIKUStock(), faYouYiKuOrder);
+
+        // 700
+//        Order faYouYiKuOrder = OrderSamples.MarketOrder("SELL", 300);
+//        faYouYiKuOrder.account("DU525700");
+//        m_client.placeOrder(2007, ContractSamples.TencentStock(), faYouYiKuOrder);
 
         // cancel 6288
 //        m_client.cancelOrder(1127);
@@ -107,8 +118,9 @@ public class Testbed {
         // Call this function to calculate option price and greek values for a supplied volatility and underlying price
 //        m_client.calculateOptionPrice(1287, ContractSamples.OptionAtBOX(), 0.22, 85);
 
-//        m_client.reqMarketDataType(1);
-//        m_client.reqMktData(1289, ContractSamples.Commodity(), "", false, null);
+        m_client.reqMarketDataType(1);
+//        m_client.reqMktData(2009, ContractSamples.Commodity(), "", false, null);
+        m_client.reqMktData(2013, ContractSamples.TencentStock(), "", false, null);
 
         // Call the exerciseOptions() method to exercise options. Failed!
 //        m_client.exerciseOptions(1298, ContractSamples.OptionWithTradingClass(), 1, 1, "DU525701", 1);
@@ -162,7 +174,7 @@ public class Testbed {
 //        Thread.sleep(5000);
 //        m_client.cancelPositions();
 
-        Thread.sleep(20000);
+        Thread.sleep(40000);
         m_client.eDisconnect();
     }
 
@@ -335,7 +347,9 @@ public class Testbed {
         //! [reqmktdata]
         client.reqMktData(1001, ContractSamples.StockComboContract(), "", false, null);
         //! [reqmktdata]
-
+        //Requesting data for an option contract will return the greek values
+        client.reqMktData(1002, ContractSamples.OptionWithLocalSymbol(), "", false, null);
+        //! [reqoptiondatagenticks]
         //! [reqmktdata_snapshot]
         client.reqMktData(1003, ContractSamples.FutureComboContract(), "", true, null);
         //! [reqmktdata_snapshot]
@@ -357,9 +371,7 @@ public class Testbed {
         client.reqMktData(1012, ContractSamples.MTbroadtapeNewsFeed(), "mdoff,292", false, null);
         //! [reqmktdata_broadtapenews]
         //! [reqoptiondatagenticks]
-        //Requesting data for an option contract will return the greek values
-        client.reqMktData(1002, ContractSamples.OptionWithLocalSymbol(), "", false, null);
-        //! [reqoptiondatagenticks]
+
 
         Thread.sleep(10000);
         //! [cancelmktdata]
@@ -367,7 +379,6 @@ public class Testbed {
         client.cancelMktData(1002);
         client.cancelMktData(1003);
         //! [cancelmktdata]
-
     }
 
     private static void historicalDataRequests(EClientSocket client) throws InterruptedException {

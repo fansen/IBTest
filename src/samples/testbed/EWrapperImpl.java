@@ -92,40 +92,40 @@ public class EWrapperImpl implements EWrapper {
                 + ", AvgFillPrice: " + avgFillPrice + ", PermId: " + permId + ", ParentId: " + parentId + ", LastFillPrice: " + lastFillPrice +
                 ", ClientId: " + clientId + ", WhyHeld: " + whyHeld);
 
-        // 驱动程序名
-        String driver = "com.mysql.jdbc.Driver";
-        // URL指向要访问的数据库名mysql
-        String url = "jdbc:mysql://127.0.0.1:3306/mysql?characterEncoding=utf-8&useSSL=false";
-        // MySQL配置时的用户名
-        String user = "root";
-        // MySQL配置时的密码
-        String password = "fansen@1992";
-        if (status.equals("Filled")) {
-            try {
-                // 加载驱动程序
-                Class.forName(driver);
-                // 连接数据库
-                Connection conn = DriverManager.getConnection(url, user, password);
-                if (!conn.isClosed())
-                    System.out.println("Succeeded connecting to the Database!");
-                // statement用来执行SQL语句
-                Statement statement = conn.createStatement();
-                // 要执行的SQL语句
-                String sql = "update ibtest set id=" + (orderId + 1) +
-                        ", quantity=" + filled +
-                        ", secType ='STK', currency='HKD'," +
-                        " exchange='SEHK', symbol='6288', action='BUY', orderType='MKT', account='DU525700', status='" + status +
-                        "' WHERE 1";
-                // 结果集
-                System.out.println("executeUpdate = " + statement.executeUpdate(sql));
-            } catch (ClassNotFoundException e) {
-                System.out.println("Sorry,can`t find the Driver!");
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
+//        // 驱动程序名
+//        String driver = "com.mysql.jdbc.Driver";
+//        // URL指向要访问的数据库名mysql
+//        String url = "jdbc:mysql://127.0.0.1:3306/mysql?characterEncoding=utf-8&useSSL=false";
+//        // MySQL配置时的用户名
+//        String user = "root";
+//        // MySQL配置时的密码
+//        String password = "fansen@1992";
+//        if (status.equals("Filled")) {
+//            try {
+//                // 加载驱动程序
+//                Class.forName(driver);
+//                // 连接数据库
+//                Connection conn = DriverManager.getConnection(url, user, password);
+//                if (!conn.isClosed())
+//                    System.out.println("Succeeded connecting to the Database!");
+//                // statement用来执行SQL语句
+//                Statement statement = conn.createStatement();
+//                // 要执行的SQL语句
+//                String sql = "update ibtest set id=" + (orderId + 1) +
+//                        ", quantity=" + filled +
+//                        ", secType ='STK', currency='HKD'," +
+//                        " exchange='SEHK', symbol='6288', action='BUY', orderType='MKT', account='DU525700', status='" + status +
+//                        "' WHERE 1";
+//                // 结果集
+//                System.out.println("executeUpdate = " + statement.executeUpdate(sql));
+//            } catch (ClassNotFoundException e) {
+//                System.out.println("Sorry,can`t find the Driver!");
+//                e.printStackTrace();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
     }
     //! [orderstatus]
 
@@ -133,7 +133,7 @@ public class EWrapperImpl implements EWrapper {
     @Override
     public void openOrder(int orderId, Contract contract, Order order, OrderState orderState) {
         System.out.println("OpenOrder. ID: " + orderId + ", " + contract.symbol() + ", " + contract.secType() + " @ " + contract.exchange() + ": " +
-                order.action() + ", " + order.orderType() + " " + order.totalQuantity() + ", " + orderState.status());
+                order.action() + ", " + order.orderType() + " " + order.totalQuantity() + ", " + orderState.status() + ", conid = " + contract.conid());
     }
     //! [openorder]
 
